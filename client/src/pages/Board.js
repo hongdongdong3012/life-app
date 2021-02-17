@@ -3,8 +3,9 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../styles/board.css';
 
-export default class Board extends Component {
-  render() {
+class Board extends Component {
+
+  funcction() {
     return (
       <div>
         <h2>게시판</h2>
@@ -40,3 +41,5 @@ export default class Board extends Component {
     )
   }
 }
+
+export default Board;
