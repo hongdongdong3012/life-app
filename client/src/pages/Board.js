@@ -6,23 +6,40 @@ import '../styles/board.css';
 
   function Board() {
 
+    const [boardContent, setBoardContent] = useState({
+      title: '',
+      content: ''
+    })
+
+    const [viewContent, setViewContent] = useState([]);
+
+    const getValue = (e) => {
+      const {name ,value } = e.target;
+      setBoardContent({
+        ...boardContent,
+        [name] : value
+      })
+      console.log(boardContent);
+    };
 
     return (
       <section className="boardWrap">
         <h2>게시판</h2>
         <div className='container'>
           <div className="textGroup">
-
+          {viewContent.map(element => 
               <>
-                <h3></h3>
+                <h3>{element.title}</h3>
                 <div className="contents">
-                  
+                  {ReactHtmlParser(element.content)}
                 </div>
               </>
-
+          )}
           </div>
           <div className='formWrapper'>
-            <input className="title" type='text' placeholder='제목' name='title'/>
+            <input className="title" type='text' placeholder='제목' name='title'
+              onChange={getValue}
+            />
             <CKEditor
               editor={ClassicEditor}
               data=""
@@ -33,7 +50,11 @@ import '../styles/board.css';
               onChange={(event, editor) => {
                 const data = editor.getData();
                 console.log({ event, editor, data });
-
+                setBoardContent({
+                  ...boardContent,
+                  content: data
+                })
+                console.log(boardContent);
 
               }}
               onBlur={(event, editor) => {
@@ -44,7 +65,9 @@ import '../styles/board.css';
               }}
             />
             <button className="submitButton"
-
+              onClick={() => {
+                setViewContent(viewContent.concat({...boardContent}))
+              }}
             >입력</button>
           </div>
         </div>
