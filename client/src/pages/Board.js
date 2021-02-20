@@ -5,22 +5,6 @@ import ReactHtmlParser from 'react-html-parser';
 import '../styles/board.css';
 
   function Board() {
-    const [movieContent, setMovieContent] = useState({
-      title: '',
-      content: ''
-    })
-
-    const [viewContent, setViewContent] = useState([])
-
-    const getValue = e => {
-      const { name, value } = e.target;
-      setMovieContent({
-        ...movieContent,
-        [name]: value
-      })
-      console.log(movieContent);
-    }
-
 
 
     return (
@@ -28,17 +12,17 @@ import '../styles/board.css';
         <h2>게시판</h2>
         <div className='container'>
           <div className="textGroup">
-            {viewContent.map(e => 
+
               <>
-                <h3>{e.title}</h3>
+                <h3></h3>
                 <div className="contents">
-                  {ReactHtmlParser(e.content)}
+                  
                 </div>
               </>
-            )}
+
           </div>
           <div className='formWrapper'>
-            <input className="title" type='text' placeholder='제목' onChange={getValue} name='title'/>
+            <input className="title" type='text' placeholder='제목' name='title'/>
             <CKEditor
               editor={ClassicEditor}
               data=""
@@ -49,11 +33,8 @@ import '../styles/board.css';
               onChange={(event, editor) => {
                 const data = editor.getData();
                 console.log({ event, editor, data });
-                setMovieContent({
-                  ...movieContent,
-                  content: data
-                })
-                console.log(movieContent);
+
+
               }}
               onBlur={(event, editor) => {
                 console.log('Blur.', editor);
@@ -63,9 +44,7 @@ import '../styles/board.css';
               }}
             />
             <button className="submitButton"
-            onClick={() => {
-              setViewContent(viewContent.concat({...movieContent}))
-            }}
+
             >입력</button>
           </div>
         </div>
