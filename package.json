@@ -1,5 +1,14 @@
 {
+  "scripts" : {
+    "start": "npm-run-all --parallel start:**",
+    "start:client" : "react-scripts start",
+    "start:server":"node ./server/app.js",
+    "build":"react-scripts build",
+    "test" : "react-script test",
+    "eject" : "react-scripts eject"
+  },
   "dependencies": {
+    "http-proxy-middleware": "^1.0.6",
     "node-html-parser": "^2.1.0",
     "react-html-parser": "^2.0.2"
   }

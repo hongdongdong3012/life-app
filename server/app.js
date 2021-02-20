@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const api = require('./routes/index');
 
-app.listen(PORT, function() {
-  console.log('server on!')
-})
+app.use('/api', api);
+
+const port = 3001;
+app.listen(port, () => console.log(`Listening on port ${port}`));
